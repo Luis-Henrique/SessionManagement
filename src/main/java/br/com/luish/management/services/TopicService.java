@@ -15,21 +15,29 @@ public class TopicService {
 	@Autowired
 	TopicRepository repository;
 
-	public void insert(Topic topic) {
+	public Topic insert(Topic topic) {
 		
-		if(!isDuplicate(topic)) 
-			repository.save(topic);
-	
+		topic.setDate(DateUtil.getDateNow());
+		
+		if(!isDuplicate(topic)) {
+			DateUtil.onlyDate(topic.getDate());
+			return repository.save(topic);
+		}
+			
+		
+		return null;
+		
 	}
 
 	private boolean isDuplicate(Topic topic) {
 
 		List<Topic> topics = repository.findByTitle(topic.getTitle());
 
-		if (topics == null || topics.size() == 0)
-			return false;
 		
 		for (Topic aux : topics) {
+			
+			if(aux.getTitle().equals(null))
+				return false;
 			
 			if(aux.getTitle().equals(topic.getTitle())) {
 				if((DateUtil.equalsDate(topic.getDate(), aux.getDate()))) {

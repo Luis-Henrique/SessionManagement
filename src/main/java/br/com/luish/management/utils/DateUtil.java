@@ -1,6 +1,7 @@
 package br.com.luish.management.utils;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtil {
@@ -13,6 +14,26 @@ public class DateUtil {
 			return true;
 		
 		return false;
+		
+	}
+
+	public static Date getDateNow() {
+	
+		Calendar c = Calendar.getInstance();
+		return c.getTime();
+		
+	}
+
+	public static Date onlyDate(Date date) {
+
+		Calendar c = Calendar.getInstance();
+		
+		c.setTime(date);
+		c.set(Calendar.HOUR, 0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		
+		return  c.getTime();
 		
 	}
 
