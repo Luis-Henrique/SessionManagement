@@ -3,16 +3,30 @@ package br.com.luish.management.models;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import br.com.luish.management.models.enums.VoteValue;
 
+@Entity
 public class Vote implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String cpf;
-	private Session session;
 	private Integer voteValue;
+	
+	//relacionamento onde muitos votos pode ter uma sessao
+	@ManyToOne
+	@JoinColumn(name = "session_id")
+	private Session session;
 	
 	public Vote() {
 	}

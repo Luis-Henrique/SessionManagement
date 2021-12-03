@@ -1,23 +1,39 @@
 package br.com.luish.management.models;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import br.com.luish.management.models.enums.SessionResult;
 import br.com.luish.management.models.enums.SessionStatus;
 
+@Entity
 public class Session implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Integer result;
 	private long time;
 	private int totalVotes;
 	private Integer status;
-	private Map<String, Vote> votes = new HashMap<>();
+	
+	@OneToMany(mappedBy = "session")
+	private List<Vote> votes = new ArrayList<>();
+	
+	@ManyToOne
+	@JoinColumn(name = "topic_id")
 	private Topic topic;
 	
 	public Session() {
@@ -71,11 +87,13 @@ public class Session implements Serializable {
 		this.status = status;
 	}
 
-	public Map<String, Vote> getVotes() {
+	
+	
+	public List<Vote> getVotes() {
 		return votes;
 	}
 
-	public void setVotes(Map<String, Vote> votes) {
+	public void setVotes(List<Vote> votes) {
 		this.votes = votes;
 	}
 
