@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.luish.management.models.enums.SessionResult;
 import br.com.luish.management.models.enums.SessionStatus;
 
@@ -29,23 +31,26 @@ public class Session implements Serializable {
 	private int totalVotes;
 	private Integer status;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "session")
 	private List<Vote> votes = new ArrayList<>();
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "topic_id")
-	private Topic topic;
+	private Convocation topic;
 	
 	public Session() {
 	}
 
-	public Session(long time, Topic topic) {
+	public Session(long time, Convocation topic) {
 		this.time = time;
 		this.topic = topic;
 		this.result = SessionResult.ANDAMENTO.getCode();
 		this.totalVotes  = 0;
 		this.status = SessionStatus.ABERTA.getCode();
 	}
+
 
 	public Integer getId() {
 		return id;
@@ -88,7 +93,6 @@ public class Session implements Serializable {
 	}
 
 	
-	
 	public List<Vote> getVotes() {
 		return votes;
 	}
@@ -97,11 +101,11 @@ public class Session implements Serializable {
 		this.votes = votes;
 	}
 
-	public Topic getTopic() {
+	public Convocation getTopic() {
 		return topic;
 	}
 
-	public void setTopic(Topic topic) {
+	public void setTopic(Convocation topic) {
 		this.topic = topic;
 	}
 

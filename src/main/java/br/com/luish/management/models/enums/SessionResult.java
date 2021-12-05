@@ -1,8 +1,9 @@
 package br.com.luish.management.models.enums;
 
 public enum SessionResult {
-	
-	APROVADO(1, "aprovado"), REPROVADO(2, "reprovado"), ANDAMENTO(3,"andamento");
+
+	APROVADO(1, "aprovado"), REPROVADO(2, "reprovado"), ANDAMENTO(3, "andamento"), SEMVOTOS(4, "sem votos computados"),
+	EMPATADO(5, "empatado");
 
 	private int code;
 	private String description;

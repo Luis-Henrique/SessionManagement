@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Topic implements Serializable {
+public class Convocation implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -27,10 +27,10 @@ public class Topic implements Serializable {
 	@OneToMany(mappedBy = "topic")
 	private List<Session> sessions = new ArrayList<>();
 	
-	public Topic() {
+	public Convocation() {
 	}
 
-	public Topic(String title, Date date) {
+	public Convocation(String title, Date date) {
 		this.title = title;
 		this.date = date;
 	}
@@ -80,7 +80,7 @@ public class Topic implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Topic other = (Topic) obj;
+		Convocation other = (Convocation) obj;
 		return Objects.equals(id, other.id);
 	}
 	

@@ -10,23 +10,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.luish.management.models.Topic;
-import br.com.luish.management.services.TopicService;
+import br.com.luish.management.models.Convocation;
+import br.com.luish.management.services.ConvocationService;
 
 @RestController
-@RequestMapping(value = "/topic")
-public class TopicResource {
-	
-	@Autowired 
-	TopicService service;
-	
+@RequestMapping(value = "/convocation")
+public class ConvocationResource {
+
+	@Autowired
+	ConvocationService service;
+
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Topic> insert(@RequestBody Topic obj) {
-		
+	public ResponseEntity<Convocation> insert(@RequestBody Convocation obj) {
+
 		obj = service.insert(obj);
-		
-	
-		
+
 		// retornar codigo 201 e uri
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();

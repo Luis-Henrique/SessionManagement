@@ -31,10 +31,10 @@ public class Vote implements Serializable {
 	public Vote() {
 	}
 
-	public Vote(String cpf, Session session, VoteValue voteValue) {
+	public Vote(String cpf, VoteValue voteValue, Session session) {
 		this.cpf = cpf;
-		this.session = session;
 		this.voteValue = voteValue.getCode();
+		this.session = session;
 	}
 
 	public Integer getId() {

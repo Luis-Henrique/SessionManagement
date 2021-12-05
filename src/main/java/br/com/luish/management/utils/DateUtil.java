@@ -37,4 +37,13 @@ public class DateUtil {
 		
 	}
 
+	public static boolean isValidTime(long time) {
+		
+		if(System.currentTimeMillis() > time)
+			return false;
+		
+		return true;
+		
+	}
+
 }

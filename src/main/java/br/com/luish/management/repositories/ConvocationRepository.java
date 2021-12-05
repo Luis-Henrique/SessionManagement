@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.luish.management.models.Topic;
+import br.com.luish.management.models.Convocation;
 
 @Repository
-public interface TopicRepository extends JpaRepository<Topic, Integer>{
+public interface ConvocationRepository extends JpaRepository<Convocation, Integer>{
 
-	List<Topic> findByTitle(String title);
+	List<Convocation> findByTitle(String title);
 	
 }
